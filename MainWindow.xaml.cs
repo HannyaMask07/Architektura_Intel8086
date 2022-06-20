@@ -336,9 +336,6 @@ namespace Intel8086
                 MessageBox.Show("Proszę zapełnić wszystkie rejestry");
                 return;
             }
-
-            Procesor = new string[] { AH.Text.ToUpper(), BH.Text.ToUpper(), CH.Text.ToUpper(), DH.Text.ToUpper(), AL.Text.ToUpper(), BL.Text.ToUpper(), CL.Text.ToUpper(), DL.Text.ToUpper() };
-
             
             if (Operacja.Text == "MOV")
             {
@@ -434,6 +431,19 @@ namespace Intel8086
 
             }
 
+            Output1.Text = Procesor[0];
+            Output2.Text = Procesor[1];
+            Output3.Text = Procesor[2];
+            Output4.Text = Procesor[3];
+            Output5.Text = Procesor[4];
+            Output6.Text = Procesor[5];
+            Output7.Text = Procesor[6];
+            Output8.Text = Procesor[7];
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            Procesor = new string[] { AH.Text.ToUpper(), BH.Text.ToUpper(), CH.Text.ToUpper(), DH.Text.ToUpper(), AL.Text.ToUpper(), BL.Text.ToUpper(), CL.Text.ToUpper(), DL.Text.ToUpper() };
             Output1.Text = Procesor[0];
             Output2.Text = Procesor[1];
             Output3.Text = Procesor[2];
