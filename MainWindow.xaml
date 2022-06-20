@@ -8,9 +8,10 @@
         Title="MainWindow" Height="450" Width="600" ResizeMode="NoResize">
     <Grid Background="CadetBlue">
 
-
+        
 
         <Grid Background="#0000" Width="150" Height="135" Margin="-435,-250,0,0">
+            <Label Width="50" Height="25" Content="Output:" Margin="359,108,-259,3"/>
             <Label Content="AH" Width="30" Height="25" Margin="5,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
             <Label Content="BH" Width="30" Height="25" Margin="5,35,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
             <Label Content="CH" Width="30" Height="25" Margin="5,65,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
@@ -29,7 +30,7 @@
             <TextBox CharacterCasing="Upper" Name ="CL" Width="30" Height="25" Margin="100,65,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" TextChanged="CL_TextChanged"/>
             <TextBox CharacterCasing="Upper" Name ="DL" Width="30" Height="25" Margin="100,95,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" TextChanged="DL_TextChanged"/>
         </Grid>
-
+        
         <Grid Background="White" Width="150" Height="135" Margin="400,-250,0,0" >
             <Label Content="AH" Width="30" Height="25" Margin="5,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
             <Label Content="BH" Width="30" Height="25" Margin="5,35,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
