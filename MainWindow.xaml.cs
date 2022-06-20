@@ -28,10 +28,11 @@ namespace Intel8086
         {
 
             InitializeComponent();
-            Operacje = new string[] { "MOV", "XCHG" };
-            Rejestr_1 = new string[] { "AH", "BH", "CH", "DH" };
-            Rejestr_2 = new string[] { "AL", "BL", "CL", "DL" };
+            Operacje = new string[] { "MOV", "XCHG", "AND", "OR","XOR","ADD","SUBB", "INC", "DEC", "NOT", "NEG" };
+            Rejestr_1 = new string[] { "AH", "BH", "CH", "DH","AL", "BL", "CL", "DL"};
+            Rejestr_2 = new string[] { "AH", "BH", "CH", "DH", "AL", "BL", "CL", "DL"};
             Procesor = new string[] { AH.Text.ToUpper(), BH.Text.ToUpper(), CH.Text.ToUpper(), DH.Text.ToUpper(), AL.Text.ToUpper(), BL.Text.ToUpper(), CL.Text.ToUpper(), DL.Text.ToUpper() };
+
             DataContext = this;
 
             AH.MaxLength = 2;
@@ -356,12 +357,37 @@ namespace Intel8086
                     case "DH":
                         procFirst = 3;
                         break;
-                    default: procFirst = 0;
+                    case "AL":
+                        procFirst = 4;
+                        break;
+                    case "BL":
+                        procFirst = 5;
+                        break;
+                    case "CL":
+                        procFirst = 6;
+                        break;
+                    case "DL":
+                        procFirst = 7;
+                        break;
+                    default:
+                        procFirst = 0;
                         break;
                 }
 
                 switch (Rejestr2.Text)
                 {
+                    case "AH":
+                        procSecond = 0;
+                        break;
+                    case "BH":
+                        procSecond = 1;
+                        break;
+                    case "CH":
+                        procSecond = 2;
+                        break;
+                    case "DH":
+                        procSecond = 3;
+                        break;
                     case "AL":
                         procSecond = 4;
                         break;
@@ -378,7 +404,7 @@ namespace Intel8086
                         break;
                 }
 
-                Procesor[procFirst] = Procesor[procSecond];
+                Procesor[procSecond] = Procesor[procFirst];
 
             }
 
@@ -401,6 +427,18 @@ namespace Intel8086
                     case "DH":
                         procFirst = 3;
                         break;
+                    case "AL":
+                        procFirst = 4;
+                        break;
+                    case "BL":
+                        procFirst = 5;
+                        break;
+                    case "CL":
+                        procFirst = 6;
+                        break;
+                    case "DL":
+                        procFirst = 7;
+                        break;
                     default:
                         procFirst = 0;
                         break;
@@ -408,6 +446,18 @@ namespace Intel8086
 
                 switch (Rejestr2.Text)
                 {
+                    case "AH":
+                        procSecond = 0;
+                        break;
+                    case "BH":
+                        procSecond = 1;
+                        break;
+                    case "CH":
+                        procSecond = 2;
+                        break;
+                    case "DH":
+                        procSecond = 3;
+                        break;
                     case "AL":
                         procSecond = 4;
                         break;
@@ -431,6 +481,219 @@ namespace Intel8086
 
             }
 
+            if (Operacja.Text == "INC")
+            {
+                int procFirst;
+
+                switch (Rejestr1.Text)
+                {
+
+                    case "AH":
+                        procFirst = 0;
+                        break;
+                    case "BH":
+                        procFirst = 1;
+                        break;
+                    case "CH":
+                        procFirst = 2;
+                        break;
+                    case "DH":
+                        procFirst = 3;
+                        break;
+                    case "AL":
+                        procFirst = 4;
+                        break;
+                    case "BL":
+                        procFirst = 5;
+                        break;
+                    case "CL":
+                        procFirst = 6;
+                        break;
+                    case "DL":
+                        procFirst = 7;
+                        break;
+                    default:
+                        procFirst = 0;
+                        break;
+
+                }
+
+                string stringHex = Procesor[procFirst];
+
+                int intFromHex = int.Parse(stringHex, System.Globalization.NumberStyles.HexNumber) + 1;
+                if (intFromHex > 100)
+                {
+                    intFromHex = 0;
+                }
+                Procesor[procFirst] = intFromHex.ToString("X");
+
+            }
+
+            if (Operacja.Text == "DEC")
+            {
+                int procFirst;
+
+                switch (Rejestr1.Text)
+                {
+
+                    case "AH":
+                        procFirst = 0;
+                        break;
+                    case "BH":
+                        procFirst = 1;
+                        break;
+                    case "CH":
+                        procFirst = 2;
+                        break;
+                    case "DH":
+                        procFirst = 3;
+                        break;
+                    case "AL":
+                        procFirst = 4;
+                        break;
+                    case "BL":
+                        procFirst = 5;
+                        break;
+                    case "CL":
+                        procFirst = 6;
+                        break;
+                    case "DL":
+                        procFirst = 7;
+                        break;
+                    default:
+                        procFirst = 0;
+                        break;
+
+                }
+
+
+                string stringHex = Procesor[procFirst];
+
+                int intFromHex = int.Parse(stringHex, System.Globalization.NumberStyles.HexNumber) - 1;
+
+                if (intFromHex < 00)
+                {
+                    intFromHex = 255;
+                }
+
+                Procesor[procFirst] = intFromHex.ToString("X");
+
+            }
+
+
+            if (Operacja.Text == "NOT")
+            {
+                int procFirst;
+
+                switch (Rejestr1.Text)
+                {
+
+                    case "AH":
+                        procFirst = 0;
+                        break;
+                    case "BH":
+                        procFirst = 1;
+                        break;
+                    case "CH":
+                        procFirst = 2;
+                        break;
+                    case "DH":
+                        procFirst = 3;
+                        break;
+                    case "AL":
+                        procFirst = 4;
+                        break;
+                    case "BL":
+                        procFirst = 5;
+                        break;
+                    case "CL":
+                        procFirst = 6;
+                        break;
+                    case "DL":
+                        procFirst = 7;
+                        break;
+                    default:
+                        procFirst = 0;
+                        break;
+
+                }
+
+                
+                byte binaryval = Convert.ToByte(Procesor[procFirst], 16);
+
+                byte[] negatedBin = {(byte)~(binaryval)};
+            
+
+                string hex = BitConverter.ToString(negatedBin);
+
+                int intFromHex = int.Parse(hex, System.Globalization.NumberStyles.HexNumber);
+
+                if (intFromHex == 100)
+                {
+                    intFromHex = 00;
+                }
+
+                Procesor[procFirst] = intFromHex.ToString("X");
+           
+            }
+
+
+            if (Operacja.Text == "NEG")
+            {
+                int procFirst;
+
+                switch (Rejestr1.Text)
+                {
+
+                    case "AH":
+                        procFirst = 0;
+                        break;
+                    case "BH":
+                        procFirst = 1;
+                        break;
+                    case "CH":
+                        procFirst = 2;
+                        break;
+                    case "DH":
+                        procFirst = 3;
+                        break;
+                    case "AL":
+                        procFirst = 4;
+                        break;
+                    case "BL":
+                        procFirst = 5;
+                        break;
+                    case "CL":
+                        procFirst = 6;
+                        break;
+                    case "DL":
+                        procFirst = 7;
+                        break;
+                    default:
+                        procFirst = 0;
+                        break;
+
+                }
+
+
+                byte binaryval = Convert.ToByte(Procesor[procFirst], 16);
+
+                byte[] negatedBin = { (byte)~(binaryval) };
+
+
+                string hex = BitConverter.ToString(negatedBin);
+
+                int intFromHex = int.Parse(hex, System.Globalization.NumberStyles.HexNumber) + 1;
+
+                if (intFromHex > 255)
+                {
+                    intFromHex = 00;
+                }
+
+                Procesor[procFirst] = intFromHex.ToString("X");
+
+            }
+
             Output1.Text = Procesor[0];
             Output2.Text = Procesor[1];
             Output3.Text = Procesor[2];
@@ -439,7 +702,11 @@ namespace Intel8086
             Output6.Text = Procesor[5];
             Output7.Text = Procesor[6];
             Output8.Text = Procesor[7];
+        
         }
+
+
+        
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
@@ -452,6 +719,52 @@ namespace Intel8086
             Output6.Text = Procesor[5];
             Output7.Text = Procesor[6];
             Output8.Text = Procesor[7];
+        }
+
+        private void Operacja_DropDownClosed(object sender, EventArgs e)
+        {
+            if (Operacja.Text == "INC" || Operacja.Text == "DEC" || Operacja.Text == "NOT" || Operacja.Text == "NEG")
+            {
+                Rejestr2.Visibility = Visibility.Collapsed;
+                Rejestr2_.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                Rejestr2.Visibility = Visibility.Visible;
+                Rejestr2_.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            Random random = new Random();
+
+            int num = random.Next(255);
+            int num1 = random.Next(255);
+            int num2 = random.Next(255);
+            int num3 = random.Next(255);
+            int num4 = random.Next(255);
+            int num5 = random.Next(255);
+            int num6 = random.Next(255);
+            int num7 = random.Next(255);
+
+            string hexString = num.ToString("X");
+            string hexString1 = num1.ToString("X");
+            string hexString2 = num2.ToString("X");
+            string hexString3 = num3.ToString("X");
+            string hexString4 = num4.ToString("X");
+            string hexString5 = num5.ToString("X");
+            string hexString6 = num6.ToString("X");
+            string hexString7 = num7.ToString("X");
+
+            AH.Text = hexString;
+            BH.Text = hexString1;
+            CH.Text = hexString2;
+            DH.Text = hexString3;
+            AL.Text = hexString4;
+            BL.Text = hexString5;
+            CL.Text = hexString6;
+            DL.Text = hexString7;
         }
     }
 }
